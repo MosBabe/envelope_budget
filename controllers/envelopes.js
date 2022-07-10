@@ -52,7 +52,7 @@ exports.updateEnvelope = (req, res, next) => {
 
         if (!envelope) {
             return res.send(404).send({
-                messsage: "Envelope Not Found";
+                messsage: "Envelope Not Found",
             });
         }
 
@@ -72,7 +72,7 @@ exports.deleteEnvelope = (req, res, next) => {
 
         if (!envelope) {
             return res.send(404).send({
-                messsage: "Envelope Not Found";
+                messsage: "Envelope Not Found",
             });
         }
 
