@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
+
+
 
 const { getEnvelopes,
     getEnvelopeById,
@@ -14,6 +15,6 @@ router.get('/:id', getEnvelopeById);
 router.post('/',addEnvelope);
 router.put('/:id', updateEnvelope);
 router.delete('/:id', deleteEnvelope);
-router.put('/:fromId/transfer/:toId', transfer);
+router.put('/transfer/:fromId/:toId', transfer);
 
 module.exports = router;

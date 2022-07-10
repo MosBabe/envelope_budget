@@ -32,10 +32,12 @@ exports.addEnvelope = (req, res, next) => {
     try {
         const newId = createId(envelopes);
         const { title, budget } = req.body;
+        console.log('title: ' + title),
+        console.log('budget : ' + budget);
         const newEnvelope = {
             id: newId,
-            title,
-            budget,
+            title: title,
+            budget: budget,
         };
         envelopes.push(newEnvelope);
         res.status(201).send(newEnvelope);
@@ -49,6 +51,8 @@ exports.updateEnvelope = (req, res, next) => {
         const { title, budget } = req.body;
         const { id } = req.params;
         const envelope = findById(envelopes, id);
+
+        console.log('title: ' + title + ' ' + 'budget: ' + budget)
 
         if (!envelope) {
             return res.send(404).send({
@@ -88,6 +92,10 @@ exports.transfer = (req, res) => {
         const { fromId, toId } = req.params;
         const { amount } = req.body
 
+        console.log('fromId: '+ fromId);
+        console.log('toID: '+ toId);
+        console.log('amount: '+ amount);
+
         const originEnv = findById(envelopes, fromId);
         const destinationEnv = findById(envelopes, toId);
 
@@ -104,7 +112,7 @@ exports.transfer = (req, res) => {
         }
 
         originEnv.budget -= amount;
-        destinationEnv.budget += amount;
+        destinationEnv.budget += parseInt(amount);
 
         return res.status(201).send(originEnv);
     } catch (err) {
